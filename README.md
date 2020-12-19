@@ -37,5 +37,5 @@ python3 manage.py startapp blogs
 
 Change models:
 ```
-python3 manage.py makemigrations && python3 manage.py migrate
+python3 ./src/blogger/manage.py makemigrations && python3 ./src/blogger/manage.py migrate
 ```
