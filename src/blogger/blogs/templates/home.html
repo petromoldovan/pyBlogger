@@ -8,6 +8,8 @@
         <a href="{% url 'edit-post' post.pk %}">Edit</a>
         <a href="{% url 'delete-post' post.pk %}">Delete</a>
         <br>
+        {{post.created}}
+        <br>
         {{post.body}}
     </li>
 {%endfor%}
