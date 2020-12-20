@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Posts</h1>
-<ol>
-{% for post in object_list %}
+<h1>{{ cats }}</h1>
+{% for post in category_posts %}
     <li>
         <a href="{% url 'article-details' post.pk %}">{{post.title}}</a> - {{post.author.first_name}} - {{post.author.last_name}}
         {% if user.is_authenticated %}
-        <a href="{% url 'categoryview' post.category|slugify %}">{{post.category}}</a>
         <a href="{% url 'edit-post' post.pk %}">Edit</a>
         <a href="{% url 'delete-post' post.pk %}">Delete</a>
         {% endif %}
@@ -16,5 +14,4 @@
         {{post.body|slice:":200"}}
     </li>
 {%endfor%}
-</ol>
 {% endblock %}
