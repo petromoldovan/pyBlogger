@@ -29,6 +29,7 @@ class Post(models.Model):
     #body = models.TextField()
     body = RichTextField(blank=True, null=True)
     likes = models.ManyToManyField(User, related_name='user_post_likes')
+    snippet = models.TextField(max_length=255)
 
     def get_total_likes(self):
         return self.likes.count()
