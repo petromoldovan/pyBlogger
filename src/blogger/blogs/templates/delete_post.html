@@ -5,13 +5,22 @@
 {% endblock %}
 
 {% block content %}
-<h1>Delete post: {{post.title}}</h1>
-<div class="form-group">
-    <form method="post">
-        {% csrf_token %}
-        <strong>Are you sure?</strong>
-        <button class="btn btn-secondary">Delete</button>
-    </form>
-</div>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>Delete post: {{post.title}}</h1>
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                <strong>Are you sure?</strong>
+                <button class="btn btn-secondary">Delete</button>
+            </form>
+        </div>
+    {%else%}
+        You are not allowed here
+    {%endif%}
+{%else%}
+    You are not allowed here
+{%endif%}
+
 
 {% endblock %}

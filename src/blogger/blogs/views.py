@@ -22,7 +22,7 @@ class HomeView(ListView):
 
 class ArticleDetailView(DetailView):
     model = Post
-    template_name = 'article.details.html'
+    template_name = 'post-details.html'
 
 class AddPostView(CreateView):
     model = Post
