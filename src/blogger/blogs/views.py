@@ -27,7 +27,7 @@ class ArticleDetailView(DetailView):
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'add_post.html'
+    template_name = 'post-new.html'
     #give all fields in form
     #fields = '__all__'
     #fields = ('title', 'body')
@@ -35,11 +35,11 @@ class AddPostView(CreateView):
 class UpdatePostView(UpdateView):
     model = Post
     form_class = EditForm
-    template_name = 'update_post.html'
+    template_name = 'post-update.html'
 
 class DeletePostView(DeleteView):
     model = Post
-    template_name = 'delete_post.html'
+    template_name = 'post-delete.html'
     #where to navigate on success
     success_url = reverse_lazy('home')
 
