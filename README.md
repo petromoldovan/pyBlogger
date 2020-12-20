@@ -39,3 +39,8 @@ Change models:
 ```
 python3 ./src/blogger/manage.py makemigrations && python3 ./src/blogger/manage.py migrate
 ```
+
+Go to db shell
+```
+python3 ./src/blogger/manage.py dbshell
+```

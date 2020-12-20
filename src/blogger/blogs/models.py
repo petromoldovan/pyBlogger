@@ -26,6 +26,10 @@ class Post(models.Model):
     tab_name = models.CharField(max_length=255, default="this is default tab name")
     author = models.ForeignKey(User, on_delete=models.CASCADE) #CASCADE if we delete user, his posts are deleted
     body = models.TextField()
+    likes = models.ManyToManyField(User, related_name='user_post_likes')
+
+    def get_total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         # name in the list
