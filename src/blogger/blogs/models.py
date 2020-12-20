@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 class Post(models.Model):
@@ -11,3 +12,8 @@ class Post(models.Model):
     def __str__(self):
         # name in the list
         return self.title + ' | by: ' + str(self.author)
+
+    def get_absolute_url(self):
+        # where to redirect when post is created
+        return reverse('article-details', args=(str(self.id)))
+        #return reverse('home')
