@@ -4,7 +4,8 @@
 <ol>
 {% for post in object_list %}
     <li>
-        <a href="{% url 'article-details' post.pk %}">{{post.title}}</a> - {{post.author.first_name}} - {{post.author.last_name}} <br>
+        <a href="{% url 'article-details' post.pk %}">{{post.title}}</a> - {{post.author.first_name}} - {{post.author.last_name}}
+        <a href="{% url 'edit-post' post.pk %}">Edit</a> <br>
         {{post.body}}
     </li>
 {%endfor%}
