@@ -27,9 +27,16 @@ class ArticleDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(DetailView, self).get_context_data(*args, **kwargs)
-        likes_obj = get_object_or_404(Post, id=self.kwargs['pk'])
-        total_likes = likes_obj.get_total_likes()
+        post_obj = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = post_obj.get_total_likes()
         context["total_likes"] = total_likes
+
+        isLiked = False
+        if post_obj.likes.filter(id=self.request.user.id).exists():
+            isLiked = True
+
+        context["isLiked"] = isLiked
+
         return context
 
 class AddPostView(CreateView):
@@ -68,5 +75,10 @@ def CategoryListView(request):
 
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id_btn_value'))
-    post.likes.add(request.user)
+    #isLiked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+        #isLiked = True
     return HttpResponseRedirect(reverse('article-details', args=[str(pk)]))
