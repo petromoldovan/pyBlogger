@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
 from django.urls import reverse_lazy
 from .forms import RegistrationForm, EditProfileForm, PasswordChangeFormOwn
 from django.contrib.auth.views import PasswordChangeView
@@ -13,7 +13,7 @@ class UserRegisterView(generic.CreateView):
     template_name = 'registration/registration.html'
     success_url = reverse_lazy('login')
 
-class UserEditView(generic.UpdateView):
+class UserEditView(UpdateView):
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy('home')
@@ -40,3 +40,9 @@ class ShowProfilePageView(DetailView):
         print(page_user)
         context["page_user"] = page_user
         return context
+
+class EditProfilePageView(UpdateView):
+    model = Profile
+    template_name = 'registration/edit_profile_page.html'
+    fields = ['bio', 'avatar', 'fb_url', 'website_url']
+    success_url = reverse_lazy('home')

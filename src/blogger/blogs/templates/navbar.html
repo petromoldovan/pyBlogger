@@ -16,10 +16,23 @@
            <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'edit_profile' %}">Profile</a>
-          </li>
 
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="nav-link" href="{% url 'edit_profile' %}">Settings</a>
+            </li>
+            <li>
+              <a class="nav-link" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a>
+            </li>
+            <li>
+              <a class="nav-link" href="{% url 'show_profile_page' user.profile.id %}">Show Profile</a>
+            </li>
+          </ul>
+        </li>
         {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'register' %}">Register</a>
