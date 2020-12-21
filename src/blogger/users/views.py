@@ -16,7 +16,7 @@ class UserRegisterView(generic.CreateView):
 class UserEditView(UpdateView):
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('post-list')
 
     def get_object(self):
         return self.request.user
@@ -45,7 +45,7 @@ class EditProfilePageView(UpdateView):
     model = Profile
     template_name = 'registration/edit_profile_page.html'
     fields = ['bio', 'avatar', 'fb_url', 'website_url']
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('post-list')
 
 class CreateProfilePageView(CreateView):
     model = Profile

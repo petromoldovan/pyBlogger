@@ -16,7 +16,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         # where to redirect when post is created
-        return reverse('home')
+        return reverse('post-list')
 
 # Create your models here.
 class Post(models.Model):
@@ -42,7 +42,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         # where to redirect when post is created
         #return reverse('article-details', args=(str(self.id)))
-        return reverse('home')
+        return reverse('post-list')
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -58,7 +58,7 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         # where to redirect when creation is done
-        return reverse('home')
+        return reverse('post-list')
 
 class Comment(models.Model):
     created = models.DateField(auto_now_add=True)

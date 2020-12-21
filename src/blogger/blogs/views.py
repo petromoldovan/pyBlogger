@@ -6,14 +6,14 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
 # Create your views here.
-class HomeView(ListView):
+class PostListView(ListView):
     model = Post
-    template_name = 'home.html'
+    template_name = 'post-list.html'
     ordering = ['-created']
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context = super(PostListView, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
         return context
 
@@ -54,7 +54,7 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'post-delete.html'
     #where to navigate on success
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('post-list')
 
 
 class AddCategoryView(CreateView):
@@ -86,7 +86,7 @@ class AddCommentView(CreateView):
     form_class = CommentForm
     template_name = 'comment-new.html'
     #fields = '__all__'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('post-list')
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
