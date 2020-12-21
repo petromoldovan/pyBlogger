@@ -44,3 +44,8 @@ Go to db shell
 ```
 python3 ./src/blogger/manage.py dbshell
 ```
+
+Show deps
+```
+pip freeze
+```

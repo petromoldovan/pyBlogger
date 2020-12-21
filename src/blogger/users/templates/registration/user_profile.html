@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>User profile</h1>
+
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-2">
+
+        {% if page_user.avatar %}
+            <img src="{{page_user.avatar.url}}" class="rounded-circle card-img" />
+        {%else%}
+            <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle card-img" />
+        {%endif%}
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">{{page_user.user.first_name}} {{page_user.user.last_name}}</h5>
+          <p class="small text-muted">
+              {% if post.author.profile.fb_url %}
+                <a href="{{page_user.fb_url}}" >Facebook</a> |
+              {%endif%}
+              {% if post.author.profile.linked_url %}
+                <a href="{{page_user.linked_url}}" >LinkedIn</a> |
+              {%endif%}
+          </p>
+        <p class="card-text">{{page_user.bio}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

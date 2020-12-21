@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     blogger - {{post.tab_name}}
@@ -50,9 +51,13 @@
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-2">
-        {% if post.author.profile.avatar %}
-        <img src="{{post.author.profile.avatar.url}}" class="rounded-circle card-img"  />
-        {%endif%}
+        <a href="{% url 'show_profile_page' post.author.profile.id %}">
+            {% if post.author.profile.avatar %}
+                <img src="{{post.author.profile.avatar.url}}" class="rounded-circle card-img" />
+            {%else%}
+                <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle card-img" />
+            {%endif%}
+        </a>
     </div>
     <div class="col-md-10">
       <div class="card-body">
