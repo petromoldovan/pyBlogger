@@ -41,8 +41,8 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         # where to redirect when post is created
-        return reverse('article-details', args=(str(self.id)))
-        #return reverse('home')
+        #return reverse('article-details', args=(str(self.id)))
+        return reverse('home')
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
