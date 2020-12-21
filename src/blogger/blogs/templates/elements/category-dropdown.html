@@ -1,16 +1,16 @@
 {% if cat_menu %}
-<div class="d-inline">
-    Filter by category:
-</div>
-<div class="btn-group d-inline">
-  <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    Categories
-  </button>
-  <ul class="dropdown-menu">
-    {% for item in cat_menu%}
-        <li><a class="dropdown-item" href="{% url 'categoryview' item|slugify %}">{{item}}</a></li>
-    {% endfor %}
-  </ul>
+<div class="d-flex flex-row justify-content-start align-items-center">
+    <h4 class="mr-3 text-secondary" style="margin-right: 10px"><small>Filter by category</small></h4>
+    <div class="btn-group d-inline ml-3 mr-3">
+      <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+      </button>
+      <ul class="dropdown-menu">
+        {% for item in cat_menu%}
+            <li><a class="dropdown-item" href="{% url 'categoryview' item|slugify %}">{{item}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
 </div>
 
 {% endif %}
