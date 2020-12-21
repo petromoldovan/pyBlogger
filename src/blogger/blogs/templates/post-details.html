@@ -80,7 +80,7 @@
 
 <h2>Comments</h2>
 {%if not post.comments.all %}
-  no comments <a href="">Add one</a>
+  no comments
 {%else%}
     {% for comment in post.comments.all %}
         {{comment.name}} -
@@ -89,6 +89,8 @@
         {{comment.body}}
     {% endfor %}
 {% endif %}
+<br>
+<a href="{% url 'comment-new' post.pk %}">Add comment</a>
 
 <br>
 
