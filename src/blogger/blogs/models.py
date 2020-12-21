@@ -55,3 +55,7 @@ class Profile(models.Model):
     def __str__(self):
         # name in the list
         return str(self.user)
+
+    def get_absolute_url(self):
+        # where to redirect when creation is done
+        return reverse('home')
