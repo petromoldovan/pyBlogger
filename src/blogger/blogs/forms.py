@@ -10,7 +10,7 @@ for item in cats:
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'tab_name', 'author', 'category', 'body', 'snippet')
+        fields = ('title', 'tab_name', 'author', 'category', 'body', 'snippet', 'header_image')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),

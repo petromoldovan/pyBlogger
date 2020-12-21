@@ -30,6 +30,7 @@ class Post(models.Model):
     body = RichTextField(blank=True, null=True)
     likes = models.ManyToManyField(User, related_name='user_post_likes')
     snippet = models.TextField(max_length=255)
+    header_image = models.ImageField(null=True, blank=True, upload_to='images/')
 
     def get_total_likes(self):
         return self.likes.count()
