@@ -1,6 +1,10 @@
 {% extends 'elements/base.html' %}
+
 {% block content %}
 <h1>Posts</h1>
+
+{% include 'elements/category-dropdown.html' %}
+
 <ol>
 {% for post in object_list %}
     <li>

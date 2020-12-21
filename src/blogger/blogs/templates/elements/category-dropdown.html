@@ -1,0 +1,16 @@
+{% if cat_menu %}
+<div class="d-inline">
+    Filter by category:
+</div>
+<div class="btn-group d-inline">
+  <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Categories
+  </button>
+  <ul class="dropdown-menu">
+    {% for item in cat_menu%}
+        <li><a class="dropdown-item" href="{% url 'categoryview' item|slugify %}">{{item}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endif %}

@@ -59,7 +59,7 @@ class DeletePostView(DeleteView):
 
 class AddCategoryView(CreateView):
     model = Category
-    template_name = 'add_category.html'
+    template_name = 'category-new.html'
     fields = '__all__'
 
 def CategoryView(request, cats):
