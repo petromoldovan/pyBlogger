@@ -23,7 +23,6 @@
 <img src="{{post.header_image.url}}" />
 {%endif%}
 
-
 <p>{{post.body|safe}}</p>
 
 <a href="{% url 'home' %}" class="btn btn-secondary">go back</a>
@@ -46,7 +45,6 @@
 </form>
 
 <br>
-
 
 <div class="card mb-3">
   <div class="row g-0">
@@ -77,7 +75,22 @@
 </div>
 
 
+<br>
+<br>
 
+<h2>Comments</h2>
+{%if not post.comments.all %}
+  no comments <a href="">Add one</a>
+{%else%}
+    {% for comment in post.comments.all %}
+        {{comment.name}} -
+        {{comment.created}} -
+        <br>
+        {{comment.body}}
+    {% endfor %}
+{% endif %}
+
+<br>
 
 
 {% endblock %}

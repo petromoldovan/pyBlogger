@@ -59,3 +59,13 @@ class Profile(models.Model):
     def get_absolute_url(self):
         # where to redirect when creation is done
         return reverse('home')
+
+class Comment(models.Model):
+    created = models.DateField(auto_now_add=True)
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+
+    def __str__(self):
+        # name in the list
+        return self.post.title + '| by ' + self.name
