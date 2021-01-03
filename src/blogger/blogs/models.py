@@ -51,6 +51,7 @@ class Profile(models.Model):
     website_url = models.CharField(max_length=255, null=True, blank=True)
     fb_url = models.CharField(max_length=255, null=True, blank=True)
     linkedin_url = models.CharField(max_length=255, null=True, blank=True)
+    twitter_url = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         # name in the list

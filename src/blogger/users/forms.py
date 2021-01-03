@@ -56,7 +56,7 @@ class PasswordChangeFormOwn(PasswordChangeForm):
 class ProfilePageForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'avatar', 'website_url', 'fb_url', 'linkedin_url')
+        fields = ('bio', 'avatar', 'website_url', 'fb_url', 'linkedin_url', 'twitter_url')
 
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control'}),
@@ -64,4 +64,5 @@ class ProfilePageForm(forms.ModelForm):
             'website_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Placeholder text'}),
             'fb_url': forms.TextInput(attrs={'class': 'form-control'}),
             'linkedin_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'twitter_url': forms.TextInput(attrs={'class': 'form-control'})
         }
