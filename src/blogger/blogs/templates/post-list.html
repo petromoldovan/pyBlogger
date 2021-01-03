@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="d-flex flex-row justify-content-between align-items-center">
-    <h1 class="text-secondary">Our Posts</h1>
+    <h1 class="text-secondary">Trending Posts</h1>
     {% include 'elements/category-dropdown.html' %}
 </div>
 
@@ -39,8 +39,8 @@
                   | <img src="{% static 'blogger/images/calendar.png' %}" style="margin-left:5px; margin-right:5px;"> {{post.created}}
                   | Tags: <a href="{% url 'categoryview' post.category|slugify %}" style="margin-left:5px; margin-right:5px;"><span>{{post.category}}</span></a><img src="{% static 'blogger/images/price-tag.png' %}">
             </div>
-            <div>
-                <i class="icon-comment"></i> {{post.likes.count}} <img  src="{% static 'blogger/images/heart.png' %}" alt="">
+            <div class="d-flex flex-row align-items-center">
+                <p class="mb-0" style="margin-right: 5px;">{{post.likes.count}}</p><img  src="{% static 'blogger/images/heart.png' %}" alt="">
             </div>
           </div>
         </div>

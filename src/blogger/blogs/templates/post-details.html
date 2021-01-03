@@ -8,6 +8,7 @@
 {% block content %}
 <div class="container">
   <div class="row mt-3">
+      
     <div class="col-md-6 offset-md-3">
 
         <div class="d-flex flex-row justify-content-between align-items-center">
@@ -62,10 +63,10 @@
         <p>{{post.category}}</p>
 
         {%if post.header_image%}
-        <img src="{{post.header_image.url}}" />
+        <img class="mw-100 w-100 h-100" src="{{post.header_image.url}}" style="max-height: 400px; object-fit: cover;"  />
         {%endif%}
 
-        <p>{{post.body|safe}}</p>
+        <p class="mt-3">{{post.body|safe}}</p>
 
         <a href="{% url 'post-list' %}" class="btn btn-secondary">go back</a>
         <br></br>
@@ -87,42 +88,6 @@
         </form>
 
         <br>
-
-        <!--<div class="card mb-3">
-          <div class="row g-0">
-            <div class="col-md-2">
-                <a href="{% url 'show_profile_page' post.author.profile.id %}">
-                    {% if post.author.profile.avatar %}
-                        <img src="{{post.author.profile.avatar.url}}" class="rounded-circle card-img" />
-                    {%else%}
-                        <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle card-img" />
-                    {%endif%}
-                </a>
-            </div>
-            <div class="col-md-10">
-              <div class="card-body">
-                <h5 class="card-title">{{post.author.first_name}} {{post.author.last_name}}</h5>
-                  <p class="small text-muted">
-                      {% if post.author.profile.fb_url %}
-                        <a href="{{post.author.profile.fb_url}}" >Facebook</a> |
-                      {%endif%}
-                      {% if post.author.profile.linkedin_url %}
-                        <a href="{{post.author.profile.linkedin_url}}" >LinkedIn</a> |
-                      {%endif%}
-                      {% if post.author.profile.website_url %}
-                        <a href="{{post.author.profile.website_url}}" >Website</a> |
-                      {%endif%}
-                       {% if post.author.profile.twitter_url %}
-                        <a href="{{post.author.profile.twitter_url}}" >Twitter</a>
-                      {%endif%}
-                  </p>
-                <p class="card-text">{{post.author.profile.bio}}</p>
-              </div>
-            </div>
-          </div>
-        </div>-->
-
-
         <br>
         <br>
 
