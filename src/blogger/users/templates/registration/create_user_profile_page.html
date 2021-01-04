@@ -5,21 +5,25 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+  <div class="row mt-3">
+      <div class="col-md-6 offset-md-3">
+    {% if user.is_authenticated %}
 
-{% if user.is_authenticated %}
+        <h1>Create profile page</h1>
+        <div class="form-group">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media}}
+                {{ form.as_p}}
+                <button class="btn btn-secondary">Post</button>
+            </form>
+        </div>
 
-<h1>Create profile page</h1>
-<div class="form-group">
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.media}}
-        {{ form.as_p}}
-        <button class="btn btn-secondary">Post</button>
-    </form>
+    {% else %}
+        You are not allowed here
+    {% endif %}
+    </div>
+  </div>
 </div>
-
-{% else %}
-    You are not allowed here
-{% endif %}
-
 {% endblock %}

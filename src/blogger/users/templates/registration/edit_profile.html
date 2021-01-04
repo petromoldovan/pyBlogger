@@ -5,14 +5,19 @@
 {% endblock %}
 
 {% block content %}
-<h1>Profile</h1>
+<div class="container">
+  <div class="row mt-3">
+      <div class="col-md-6 offset-md-3">
+        <h1>Profile</h1>
 
-<div class="form-group">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button class="btn btn-secondary">Update</button>
-    </form>
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <button class="btn btn-secondary">Update</button>
+            </form>
+        </div>
+    </div>
+  </div>
 </div>
-
 {% endblock %}
