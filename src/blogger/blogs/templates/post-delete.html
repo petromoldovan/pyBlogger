@@ -10,7 +10,7 @@
       <div class="col-md-6 offset-md-3">
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
-        <h1>Delete post: {{post.title}}</h1>
+        <h1 class="text-secondary">Delete post: {{post.title}}</h1>
         <div class="form-group">
             <form method="post">
                 {% csrf_token %}

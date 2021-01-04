@@ -7,7 +7,7 @@
 {% block content %}
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
-        <h1>Update post</h1>
+        <h1 class="text-secondary">Update post</h1>
         <div class="form-group">
             <form method="post">
                 {% csrf_token %}
