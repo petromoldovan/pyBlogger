@@ -42,3 +42,12 @@ class CommentForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'})
         }
+
+class NewCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name', )
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'})
+        }

@@ -6,6 +6,10 @@
     <h1 class="text-secondary">Posts: {{ cats }}</h1>
 </div>
 
+{% if not category_posts%}
+<p>No posts in this category</p>
+{%endif%}
+
 {% for post in category_posts %}
 <div class="card mb-3 mt-3">
   <div class="row g-0">

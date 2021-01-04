@@ -8,7 +8,7 @@ from ckeditor.fields import RichTextField
 class Category(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created = models.DateField(auto_now_add=True)
-    name = models.CharField(max_length=255, default='notassigned')
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         # name in the list

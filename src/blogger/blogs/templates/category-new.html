@@ -5,20 +5,23 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+      <div class="row mt-3">
+          <div class="col-md-6 offset-md-3">
+    {% if user.is_authenticated %}
+    <h1 class="text-secondary">Add Category</h1>
+    <div class="form-group">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button class="btn btn-secondary">Create</button>
+        </form>
+    </div>
 
-{% if user.is_authenticated %}
-
-<h1 class="text-secondary">Add Category</h1>
-<div class="form-group">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button class="btn btn-secondary">Category</button>
-    </form>
+    {% else %}
+        You are not allowed here
+    {% endif %}
 </div>
-
-{% else %}
-    You are not allowed here
-{% endif %}
-
+  </div>
+</div>
 {% endblock %}
