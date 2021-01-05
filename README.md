@@ -25,8 +25,17 @@ Deployment
 Follow the steps from
 https://www.youtube.com/watch?v=Y4c4ickks2A
 
+Useful commands:
+```
+mkvirtualenv --python=/usr/bin/python3.8 myenv
+pip install -r requirements.txt
+```
+
 Add this line in the setting
+```
 STATIC_ROOT = '/home/petromoldovan/pyBlogger/static'
+python manage.py collectstatic 
+```
 
 Development
 ---------------
