@@ -9,6 +9,10 @@ any post. To facilitate navigation, users can filter blogs by their category pro
 Authenticated users may write/edit blog posts, like or dislike particular posts, edit 
 profiles and create categories.
 
+Blog posts are created with `django-ckeditor` rich text editor that enables usage of formatted
+html text as well usage of media. The library does it job but is susceptible to js attacks. 
+I would like to substitute the library with a markdown parser in the future. 
+
 `blogger` is organized in two apps: blogs and users.
 - `blogs` - contains logic(posts, likes, categories, comments) related to blog itself.
 - `users` - contains logic related to user management, profiles and authentication. 
