@@ -25,6 +25,9 @@ Deployment
 Follow the steps from
 https://www.youtube.com/watch?v=Y4c4ickks2A
 
+Add this line in the setting
+STATIC_ROOT = '/home/petromoldovan/pyBlogger/static'
+
 Development
 ---------------
 
