@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='tab_name',
-            field=models.CharField(default='this is default tab name', max_length=255),
+            field=models.CharField(max_length=255),
         ),
     ]

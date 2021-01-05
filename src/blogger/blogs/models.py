@@ -24,7 +24,7 @@ class Post(models.Model):
     created = models.DateField(auto_now_add=True)
     category = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    tab_name = models.CharField(max_length=255, default="this is default tab name")
+    tab_name = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE) #CASCADE if we delete user, his posts are deleted
     #body = models.TextField()
     body = RichTextField(blank=True, null=True)
