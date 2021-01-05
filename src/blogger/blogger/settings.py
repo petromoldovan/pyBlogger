@@ -39,12 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #3rd party
-    'ckeditor',
-
     # MY APPS
     'blogs',
-    'users'
+    'users',
+
+    # 3rd party
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -134,5 +134,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # on successful auth redirect
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'post-list'
+LOGOUT_REDIRECT_URL = 'post-list'

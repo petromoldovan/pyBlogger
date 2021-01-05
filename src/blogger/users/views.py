@@ -16,7 +16,7 @@ class UserRegisterView(generic.CreateView):
 class UserEditView(UpdateView):
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('post-list')
 
     def get_object(self):
         return self.request.user
@@ -37,21 +37,20 @@ class ShowProfilePageView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
-        print(page_user)
         context["page_user"] = page_user
         return context
 
 class EditProfilePageView(UpdateView):
     model = Profile
+    form_class = ProfilePageForm
     template_name = 'registration/edit_profile_page.html'
-    fields = ['bio', 'avatar', 'fb_url', 'website_url']
-    success_url = reverse_lazy('home')
+    #fields = ['bio', 'avatar', 'fb_url', 'website_url', 'linkedin_url', 'twitter_url']
+    success_url = reverse_lazy('post-list')
 
 class CreateProfilePageView(CreateView):
     model = Profile
     form_class = ProfilePageForm
     template_name = 'registration/create_user_profile_page.html'
-    #fields = '__all__'
 
     # assign correct user to the profile
     def form_valid(self, form):

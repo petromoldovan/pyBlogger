@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'elements/base.html' %}
 {% load static %}
 
 {% block title %}
@@ -6,93 +6,135 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{post.title}}</h1>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-2 offset-md-1">
+        <div class="d-flex flex-column position-fixed" >
+            <a href="{% url 'post-list' %}" style="margin-top: 10px;">
+                <div class="d-flex flex-row align-items-center justify-content-center" style="border-radius: 100%; border: 1px solid grey; width: 30px; height: 30px;">
+                    <img src="{% static 'blogger/icons/chevron.png' %}" alt="" style="width: 20px;height:20px;margin-right:5px; transform: rotate(180deg)">
+                </div>
+            </a>
 
-{% if user.is_authenticated%}
-    {% if user.id == post.author.id %}
-    <a href="{% url 'edit-post' post.pk %}">Edit</a>
-    <a href="{% url 'delete-post' post.pk %}">Delete</a>
-    {% endif %}
-{% endif %}
+            <div style="max-width: 160px; margin-top: 80px;">
+                <h6>Promote the article. Like or comment.</h6>
+                {% if not user.is_authenticated%}
+                    <p class="d-flex flex-row">
+                        <a class="nav-link" href="{% url 'login' %}" style="padding:0; margin-right: 4px;">Login</a> to participate
+                    </p>
+                {%endif%}
+                <hr>
+                <div class="d-flex flex-row">
+                    <form action="{% url 'like-post' post.pk%}" method="POST" class="w-100">
+                        {% csrf_token %}
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <img src="{% static 'blogger/icons/heart.png' %}" alt="" style="width: 20px;height:20px;margin-right:5px;">
+                                <p class="mb-0">{{total_likes}}</p>
+                            </div>
+                           {% if user.is_authenticated%}
+                                {% if isLiked %}
+                                    <button class="btn btn-sm btn-danger" type="submit" name="post_id_btn_value" value="{{post.id}}">Unlike</button>
+                                {%else%}
+                                    <button class="btn btn-sm btn-primary" type="submit" name="post_id_btn_value" value="{{post.id}}">Like</button>
+                                {%endif%}
+                            {%endif%}
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex flex-row align-items-center mt-1">
+                    <img src="{% static 'blogger/icons/comment.png' %}" alt="" style="width: 20px;height:20px;margin-right:5px;">
+                    <p class="mb-0">{{post.comments.all|length}}</p>
+                </div>
+            </div>
 
-<small>by {{post.author}}</small>
-<p>{{post.created}}</p>
-<p>{{post.category}}</p>
+        </div>
 
-{%if post.header_image%}
-<img src="{{post.header_image.url}}" />
-{%endif%}
-
-<p>{{post.body|safe}}</p>
-
-<a href="{% url 'home' %}" class="btn btn-secondary">go back</a>
-<br></br>
-<hr></gr>
-
-<form action="{% url 'like-post' post.pk%}" method="POST">
-    {% csrf_token %}
-    {% if user.is_authenticated%}
-        {% if isLiked %}
-            <button class="btn btn-sm btn-danger" type="submit" name="post_id_btn_value" value="{{post.id}}">Unlike</button>
-        {%else%}
-            <button class="btn btn-sm btn-primary" type="submit" name="post_id_btn_value" value="{{post.id}}">Like</button>
-        {%endif%}
-    {%else%}
-        <a class="nav-link" href="{% url 'login' %}">Login</a> to put a like
-    {%endif%}
-
-     - <p>{{total_likes}} Likes</p>
-</form>
-
-<br>
-
-<div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-2">
-        <a href="{% url 'show_profile_page' post.author.profile.id %}">
-            {% if post.author.profile.avatar %}
-                <img src="{{post.author.profile.avatar.url}}" class="rounded-circle card-img" />
-            {%else%}
-                <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle card-img" />
-            {%endif%}
-        </a>
     </div>
-    <div class="col-md-10">
-      <div class="card-body">
-        <h5 class="card-title">{{post.author.first_name}} {{post.author.last_name}}</h5>
-          <p class="small text-muted">
-              {% if post.author.profile.fb_url %}
-                <a href="{{post.author.profile.fb_url}}" >Facebook</a> |
-              {%endif%}
-              {% if post.author.profile.linked_url %}
-                <a href="{{post.author.profile.linked_url}}" >LinkedIn</a> |
-              {%endif%}
-          </p>
-        <p class="card-text">{{post.author.profile.bio}}</p>
-      </div>
+
+    <div class="col-md-6 ">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <h1 class="text-secondary">{{post.title}}</h1>
+            <div>
+                {% if user.is_authenticated%}
+                    {% if user.id == post.author.id %}
+                        <a href="{% url 'edit-post' post.pk %}"><img src="{% static 'blogger/images/edit.png' %}" alt=""></a>
+                        <a href="{% url 'delete-post' post.pk %}"><img src="{% static 'blogger/images/trash.png' %}" alt=""></a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row g-0 mt-3 mb-3">
+            <div class="col-md-1">
+                <a href="{% url 'show_profile_page' post.author.profile.id %}">
+                    {% if post.author.profile.avatar %}
+                        <img src="{{post.author.profile.avatar.url}}" class="rounded-circle" style="width:48px;height:48px;" />
+                    {%else%}
+                        <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle" style="width:48px;height:48px;" />
+                    {%endif%}
+                </a>
+            </div>
+            <div class="col-md-11">
+                <div class="d-flex flex-row justify-content-between align-items-end">
+
+                  <div class="d-flex flex-column" style="padding-left: 10px">
+                      <p class="mb-0">{{post.author.first_name}} {{post.author.last_name}}</p>
+                       <small class="text-secondary">{{post.created}}</small>
+                  </div>
+
+                  <p class="small text-muted">
+                      {% if post.author.profile.fb_url %}
+                        <a href="{{post.author.profile.fb_url}}"><img src="{% static 'blogger/icons/facebook.png' %}" alt="" style="width:28px;height:28px;"></a>
+                      {%endif%}
+                      {% if post.author.profile.linkedin_url %}
+                        <a href="{{post.author.profile.linkedin_url}}" ><img src="{% static 'blogger/icons/linkedin.png' %}" alt="" style="width:28px;height:28px;margin-left:7px;"></a>
+                      {%endif%}
+                       {% if post.author.profile.twitter_url %}
+                        <a href="{{post.author.profile.twitter_url}}" ><img src="{% static 'blogger/icons/twitter.png' %}" alt="" style="width:28px;height:28px;margin-left:7px;"></a>
+                      {%endif%}
+                       {% if post.author.profile.website_url %}
+                        <a href="{{post.author.profile.website_url}}" ><img src="{% static 'blogger/icons/globe.png' %}" alt="" style="width:28px;height:28px;margin-left:7px;"></a>
+                      {%endif%}
+                  </p>
+                </div>
+            </div>
+          </div>
+
+        <span class="badge bg-success">{{post.category}}</span>
+
+        {%if post.header_image%}
+        <img class="mw-100 w-100 h-100 mt-3" src="{{post.header_image.url}}" style="max-height: 400px; object-fit: cover;"  />
+        {%endif%}
+
+        <p class="mt-3">{{post.body|safe}}</p>
+        <br>
+        <hr>
+
+        <h2 class="mt-3">Comments</h2>
+        <div class="d-flex flex-column">
+            {%if not post.comments.all %}
+            <p>no comments</p>
+        {%else%}
+            {% for comment in post.comments.all %}
+            <div class="d-flex flex-row justify-content-between mt-3">
+                <b>{{comment.name}}</b>
+                <small class="text-secondary">{{comment.created}}</small>
+            </div>
+                {{comment.body}}
+            {% endfor %}
+        {% endif %}
+        <br>
+        <a  class="mt-3" href="{% url 'comment-new' post.pk %}">Add comment</a>
+        </div>
+
+
+        <br>
+
     </div>
   </div>
 </div>
 
-
-<br>
-<br>
-
-<h2>Comments</h2>
-{%if not post.comments.all %}
-  no comments
-{%else%}
-    {% for comment in post.comments.all %}
-        {{comment.name}} -
-        {{comment.created}} -
-        <br>
-        {{comment.body}}
-    {% endfor %}
-{% endif %}
-<br>
-<a href="{% url 'comment-new' post.pk %}">Add comment</a>
-
-<br>
 
 
 {% endblock %}

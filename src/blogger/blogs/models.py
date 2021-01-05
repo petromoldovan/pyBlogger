@@ -8,7 +8,7 @@ from ckeditor.fields import RichTextField
 class Category(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created = models.DateField(auto_now_add=True)
-    name = models.CharField(max_length=255, default='notassigned')
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         # name in the list
@@ -16,7 +16,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         # where to redirect when post is created
-        return reverse('home')
+        return reverse('post-list')
 
 # Create your models here.
 class Post(models.Model):
@@ -24,7 +24,7 @@ class Post(models.Model):
     created = models.DateField(auto_now_add=True)
     category = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    tab_name = models.CharField(max_length=255, default="this is default tab name")
+    tab_name = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE) #CASCADE if we delete user, his posts are deleted
     #body = models.TextField()
     body = RichTextField(blank=True, null=True)
@@ -41,8 +41,8 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         # where to redirect when post is created
-        return reverse('article-details', args=(str(self.id)))
-        #return reverse('home')
+        #return reverse('article-details', args=(str(self.id)))
+        return reverse('post-list')
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -51,6 +51,7 @@ class Profile(models.Model):
     website_url = models.CharField(max_length=255, null=True, blank=True)
     fb_url = models.CharField(max_length=255, null=True, blank=True)
     linkedin_url = models.CharField(max_length=255, null=True, blank=True)
+    twitter_url = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         # name in the list
@@ -58,7 +59,7 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         # where to redirect when creation is done
-        return reverse('home')
+        return reverse('post-list')
 
 class Comment(models.Model):
     created = models.DateField(auto_now_add=True)

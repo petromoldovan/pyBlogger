@@ -1,26 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'elements/base.html' %}
 
 {% block title %}
     Edit profile
 {% endblock %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-  {% if user.id == profile.user.id %}
-        <h1>Edit profile</h1>
-        <div class="form-group">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p}}
-                <button class="btn btn-secondary">Update</button>
-            </form>
-        </div>
-    {% else %}
-        You are not allowed here
-    {% endif %}
-{% else %}
-    You are not allowed here
-{% endif %}
-
+<div class="container">
+  <div class="row mt-3">
+      <div class="col-md-6 offset-md-3">
+        {% if user.is_authenticated %}
+          {% if user.id == profile.user.id %}
+                <h1 class="text-secondary">Edit profile</h1>
+                <div class="form-group">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p}}
+                        <button class="btn btn-secondary">Update</button>
+                    </form>
+                </div>
+            {% else %}
+                You are not allowed here
+            {% endif %}
+        {% else %}
+            You are not allowed here
+        {% endif %}
+   </div>
+  </div>
+</div>
 {% endblock %}

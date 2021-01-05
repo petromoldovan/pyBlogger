@@ -1,18 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'elements/base.html' %}
 
 {% block title %}
     Create comment
 {% endblock %}
 
 {% block content %}
+<div class="container">
+  <div class="row mt-3">
+      <div class="col-md-6 offset-md-3">
 
-<h1>Create comment</h1>
-<div class="form-group">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button class="btn btn-secondary">Create</button>
-    </form>
-</div>
+        <h1 class="text-secondary">Create comment</h1>
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <button class="btn btn-secondary">Create</button>
+            </form>
+        </div>
+          </div>
+      </div>
+    </div>
 
 {% endblock %}

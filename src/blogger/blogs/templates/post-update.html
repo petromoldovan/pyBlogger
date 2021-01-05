@@ -1,13 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'elements/base.html' %}
 
 {% block title %}
     Update new blog post
 {% endblock %}
 
 {% block content %}
+<div class="container">
+  <div class="row mt-3">
+      <div class="col-md-6 offset-md-3">
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
-        <h1>Update post</h1>
+        <h1 class="text-secondary">Update post</h1>
         <div class="form-group">
             <form method="post">
                 {% csrf_token %}
@@ -22,5 +25,8 @@
 {%else%}
     You are not allowed here
 {% endif %}
+          </div>
+      </div>
+    </div>
 
 {% endblock %}
