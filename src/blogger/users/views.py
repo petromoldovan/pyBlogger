@@ -42,8 +42,9 @@ class ShowProfilePageView(DetailView):
 
 class EditProfilePageView(UpdateView):
     model = Profile
+    form_class = ProfilePageForm
     template_name = 'registration/edit_profile_page.html'
-    fields = ['bio', 'avatar', 'fb_url', 'website_url', 'linkedin_url', 'twitter_url']
+    #fields = ['bio', 'avatar', 'fb_url', 'website_url', 'linkedin_url', 'twitter_url']
     success_url = reverse_lazy('post-list')
 
 class CreateProfilePageView(CreateView):
