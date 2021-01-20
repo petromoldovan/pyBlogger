@@ -67,13 +67,24 @@
 
         <div class="row g-0 mt-3 mb-3">
             <div class="col-md-1">
-                <a href="{% url 'show_profile_page' post.author.profile.id %}">
-                    {% if post.author.profile.avatar %}
-                        <img src="{{post.author.profile.avatar.url}}" class="rounded-circle" style="width:48px;height:48px;" />
-                    {%else%}
-                        <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle" style="width:48px;height:48px;" />
-                    {%endif%}
-                </a>
+                {% if post.author.profile%}
+                     <a href="{% url 'show_profile_page' post.author.id %}">
+                        {% if post.author.profile.avatar %}
+                            <img src="{{post.author.profile.avatar.url}}" class="rounded-circle" style="width:48px;height:48px;" />
+                        {%else%}
+                            <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle" style="width:48px;height:48px;" />
+                        {%endif%}
+                    </a>
+                {%else%}
+                    <a href="#">
+                        {% if post.author.profile.avatar %}
+                            <img src="{{post.author.profile.avatar.url}}" class="rounded-circle" style="width:48px;height:48px;" />
+                        {%else%}
+                            <img src="{% static 'blogger/images/avatar-default.png' %}" class="rounded-circle" style="width:48px;height:48px;" />
+                        {%endif%}
+                    </a>
+                {%endif%}
+
             </div>
             <div class="col-md-11">
                 <div class="d-flex flex-row justify-content-between align-items-end">
